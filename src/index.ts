@@ -4,6 +4,8 @@ import cors from 'cors';
 import connectDB from './utils/db';
 import drivingRoutes from './routes/drivingDataRoutes';
 import { PORT } from './config/dotenvConfig';
+import authRoutes from './routes/auth';
+
 
 const app = express();
 
@@ -12,6 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes
+app.use('/api/auth', authRoutes);
 app.use('/api', drivingRoutes);
 
 // Start server and connect to DB
