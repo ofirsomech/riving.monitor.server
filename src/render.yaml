@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: driving-monitor-backend
+    env: node
+    buildCommand: npm install; npm run build
+    startCommand: node dist/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Add other environment variables here
+    autoDeploy: true
