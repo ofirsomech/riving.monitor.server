@@ -11,7 +11,7 @@ const router = express.Router();
 router.post(
     '/register',
     [
-        body('name', 'Name is required').notEmpty(),
+        body('fullName', 'Name is required').notEmpty(),
         body('email', 'Please include a valid email').isEmail(),
         body('password', 'Password must be at least 6 characters').isLength({ min: 6 }),
     ],
@@ -21,7 +21,7 @@ router.post(
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { name, email, password } = req.body;
+        const { name, email, fullName, password } = req.body;
 
         try {
             let user = await User.findOne({ email: email.toLowerCase() });
@@ -29,13 +29,13 @@ router.post(
                 return res.status(400).json({ msg: 'User already exists' });
             }
 
-            user = new User({ name, email: email.toLowerCase(), password });
+            user = new User({ name, email: email.toLowerCase(), fullName, password });
 
             // Save user to database (password is hashed in the pre-save middleware)
             await user.save();
 
             // Generate JWT token
-            const payload = { user: { id: user.id } };
+            const payload = { user: { id: user.id, email: user.email.toLocaleLowerCase(), fullName: user.fullName } };
             const token = jwt.sign(payload, process.env.JWT_SECRET || 'secret', { expiresIn: '1h' });
 
             res.json({ token });
@@ -59,7 +59,7 @@ router.post(
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { email, password } = req.body;
+        const { email, password, fullName } = req.body;
 
         try {
             const user = await User.findOne({ email: email.toLowerCase() });
@@ -74,7 +74,7 @@ router.post(
             }
 
             // Generate JWT token
-            const payload = { user: { id: user.id } };
+            const payload = { user: { id: user.id, email: user.email, fullName: user.fullName } };
             const token = jwt.sign(payload, process.env.JWT_SECRET || 'secret', { expiresIn: '1h' });
 
             res.json({ token });
