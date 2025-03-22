@@ -24,12 +24,12 @@ router.post(
         const { name, email, password } = req.body;
 
         try {
-            let user = await User.findOne({ email });
+            let user = await User.findOne({ email: email.toLowerCase() });
             if (user) {
                 return res.status(400).json({ msg: 'User already exists' });
             }
 
-            user = new User({ name, email, password });
+            user = new User({ name, email: email.toLowerCase(), password });
 
             // Save user to database (password is hashed in the pre-save middleware)
             await user.save();
@@ -62,7 +62,7 @@ router.post(
         const { email, password } = req.body;
 
         try {
-            const user = await User.findOne({ email });
+            const user = await User.findOne({ email: email.toLowerCase() });
             if (!user) {
                 return res.status(400).json({ msg: 'Invalid credentials' });
             }
