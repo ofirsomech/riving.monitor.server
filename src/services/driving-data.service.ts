@@ -1,4 +1,4 @@
-import DrivingData from '../models/drivingDataModel';
+import DrivingData from '../models/driving-data.model';
 
 export const calculateSustainabilityScore = (acceleration: number, braking: number, turn: number): number => {
   const maxValues = { acceleration: 3.0, braking: 4.0, turn: 2.5 };

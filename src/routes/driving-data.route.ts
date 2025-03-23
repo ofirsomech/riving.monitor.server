@@ -1,6 +1,6 @@
 import express from 'express';
-import { averageScore, monitorBehavior } from '../controllers/drivingDataController';
-import authMiddleware from '../middlwares/authMiddleware';
+import { averageScore, monitorBehavior } from '../controllers/driving-data.controller';
+import authMiddleware from '../middlwares/auth.middleware';
 
 const router = express.Router();
 
