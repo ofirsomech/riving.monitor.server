@@ -1,5 +1,5 @@
-import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
+import express, { Request, Response } from 'express';
 import { register, login } from '../controllers/auth.controller';
 
 const router = express.Router();

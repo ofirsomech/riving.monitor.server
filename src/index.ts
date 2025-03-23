@@ -1,9 +1,9 @@
-import express from 'express';
-import bodyParser from 'body-parser';
 import cors from 'cors';
+import express from 'express';
+import routes from './routes/routes';
+import bodyParser from 'body-parser';
 import connectDB from './utils/db.utils';
 import { PORT } from './config/dotenv.config';
-import routes from './routes/routes';
 
 
 const app = express();

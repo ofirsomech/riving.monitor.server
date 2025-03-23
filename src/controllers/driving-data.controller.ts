@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { saveDrivingData } from '../services/driving-data.service';
 import DrivingData from '../models/driving-data.model';
+import { saveDrivingData } from '../services/driving-data.service';
 
 export const monitorBehavior = async (req: Request, res: Response) => {
   try {

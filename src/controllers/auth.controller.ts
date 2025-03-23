@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { validationResult } from 'express-validator';
 import User from '../models/User';
+import { validationResult } from 'express-validator';
 
 
 export const register = async (req: any, res: any) => {
