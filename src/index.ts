@@ -14,8 +14,6 @@ app.use(cors());
 
 // Routes
 app.use(routes);
-// app.use('/api/auth', authRoutes);
-// app.use('/api', drivingRoutes);
 
 // Start server and connect to DB
 connectDB();
